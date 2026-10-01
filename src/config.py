@@ -11,7 +11,7 @@ from typing import Optional
 class Settings:
     # Telegram Bot
     telegram_bot_token: str = os.getenv("TELEGRAM_BOT_TOKEN", "dev_mock_token")
-    telegram_allowed_user_id: int = int(os.getenv("TELEGRAM_ALLOWED_USER_ID", "0"))
+    telegram_allowed_user_id: int = int(os.getenv("TELEGRAM_ALLOWED_USER_ID") or os.getenv("TELEGRAM_CHAT_ID") or "0")
     
     # Redis Streams
     redis_host: str = os.getenv("REDIS_HOST", "redis")
