@@ -157,7 +157,7 @@ class BotHandlers:
             )
             await update.effective_message.reply_text(reply)
         except Exception as e:
-            logger.error("[ERROR] Failed to publish calendar sync event: %v", e)
+            logger.error("[ERROR] Failed to publish calendar sync event: %s", e)
             await update.effective_message.reply_text(f"[ERROR] Echec de publication sur Redis Streams : {e}")
 
     async def default_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):

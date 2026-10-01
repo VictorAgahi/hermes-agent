@@ -12,15 +12,12 @@ import sys
 import redis.asyncio as redis
 
 from src.config import load_settings
+from src.log_redaction import configure_logging
 from src.bot.engine import TelegramEngine
 from src.bot.notifier import NotificationListener
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[logging.StreamHandler(sys.stdout)]
-)
+# Masks the Telegram bot token in every log line and silences per-request httpx logs
+configure_logging(logging.INFO)
 
 logger = logging.getLogger("hermes.core")
 
@@ -40,7 +37,7 @@ async def main():
         await rdb.ping()
         logger.info("[INFO] Connected to Redis 7 Streams successfully")
     except Exception as e:
-        logger.error("[FATAL] Could not connect to Redis: %v", e)
+        logger.error("[FATAL] Could not connect to Redis: %s", e)
         sys.exit(1)
 
     # 2. Preparation des composants asynchrones

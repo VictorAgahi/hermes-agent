@@ -113,7 +113,7 @@ class BrowserNavigateRequest(_message.Message):
     def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., url: _Optional[str] = ..., action: _Optional[str] = ..., wait_selector: _Optional[str] = ..., timeout_seconds: _Optional[int] = ..., session_cookies: _Optional[str] = ...) -> None: ...
 
 class BrowserNavigateResponse(_message.Message):
-    __slots__ = ("header", "status", "error_message", "screenshot_path", "downloaded_file_path", "cookies_json", "challenge", "action_result", "extracted_data")
+    __slots__ = ("header", "status", "error_message", "screenshot_path", "downloaded_file_path", "cookies_json", "challenge", "action_result", "extracted_data", "observe_candidates")
     HEADER_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     ERROR_MESSAGE_FIELD_NUMBER: _ClassVar[int]
@@ -123,6 +123,7 @@ class BrowserNavigateResponse(_message.Message):
     CHALLENGE_FIELD_NUMBER: _ClassVar[int]
     ACTION_RESULT_FIELD_NUMBER: _ClassVar[int]
     EXTRACTED_DATA_FIELD_NUMBER: _ClassVar[int]
+    OBSERVE_CANDIDATES_FIELD_NUMBER: _ClassVar[int]
     header: _event_pb2.EventHeader
     status: str
     error_message: str
@@ -132,4 +133,5 @@ class BrowserNavigateResponse(_message.Message):
     challenge: ChallengeDetected
     action_result: str
     extracted_data: str
-    def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., status: _Optional[str] = ..., error_message: _Optional[str] = ..., screenshot_path: _Optional[str] = ..., downloaded_file_path: _Optional[str] = ..., cookies_json: _Optional[str] = ..., challenge: _Optional[_Union[ChallengeDetected, _Mapping]] = ..., action_result: _Optional[str] = ..., extracted_data: _Optional[str] = ...) -> None: ...
+    observe_candidates: str
+    def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., status: _Optional[str] = ..., error_message: _Optional[str] = ..., screenshot_path: _Optional[str] = ..., downloaded_file_path: _Optional[str] = ..., cookies_json: _Optional[str] = ..., challenge: _Optional[_Union[ChallengeDetected, _Mapping]] = ..., action_result: _Optional[str] = ..., extracted_data: _Optional[str] = ..., observe_candidates: _Optional[str] = ...) -> None: ...

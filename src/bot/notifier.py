@@ -31,7 +31,7 @@ class NotificationListener:
             logger.info("[INFO] Consumer group '%s' created on stream '%s'", self.group, self.stream)
         except redis.ResponseError as e:
             if "BUSYGROUP" not in str(e):
-                logger.warning("[WARN] Could not ensure consumer group for notifications: %v", e)
+                logger.warning("[WARN] Could not ensure consumer group for notifications: %s", e)
 
         logger.info("[INFO] Notification listener active on '%s'", self.stream)
 
@@ -55,7 +55,7 @@ class NotificationListener:
             except asyncio.CancelledError:
                 break
             except Exception as e:
-                logger.warning("[WARN] Notification loop exception: %v", e)
+                logger.warning("[WARN] Notification loop exception: %s", e)
                 await asyncio.sleep(1.0)
 
         logger.info("[INFO] Notification listener stopped cleanly")
@@ -81,9 +81,9 @@ class NotificationListener:
                     await self.bot.send_message(chat_id=target_chat_id, text=formatted_text)
                     logger.info("[INFO] Dispatched Telegram notification to %s", target_chat_id)
                 except Exception as send_err:
-                    logger.error("[ERROR] Failed to send Telegram notification: %v", send_err)
+                    logger.error("[ERROR] Failed to send Telegram notification: %s", send_err)
 
             # Acquittement garanti
             await self.redis.xack(self.stream, self.group, msg_id_str)
         except Exception as err:
-            logger.error("[ERROR] Failed to process notification %s: %v", msg_id_str, err)
+            logger.error("[ERROR] Failed to process notification %s: %s", msg_id_str, err)
