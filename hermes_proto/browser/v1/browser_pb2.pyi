@@ -54,6 +54,20 @@ class InputInjection(_message.Message):
     submit_form_after: bool
     def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., challenge_id: _Optional[str] = ..., text_value: _Optional[str] = ..., target_input_selector: _Optional[str] = ..., submit_form_after: _Optional[bool] = ...) -> None: ...
 
+class InputInjectionResponse(_message.Message):
+    __slots__ = ("header", "status", "error_message", "cookies_json", "screenshot_path")
+    HEADER_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    ERROR_MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    COOKIES_JSON_FIELD_NUMBER: _ClassVar[int]
+    SCREENSHOT_PATH_FIELD_NUMBER: _ClassVar[int]
+    header: _event_pb2.EventHeader
+    status: str
+    error_message: str
+    cookies_json: str
+    screenshot_path: str
+    def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., status: _Optional[str] = ..., error_message: _Optional[str] = ..., cookies_json: _Optional[str] = ..., screenshot_path: _Optional[str] = ...) -> None: ...
+
 class SessionSuspended(_message.Message):
     __slots__ = ("header", "session_id", "target_url", "reason", "freed_memory_bytes", "resume_token")
     HEADER_FIELD_NUMBER: _ClassVar[int]
@@ -99,17 +113,23 @@ class BrowserNavigateRequest(_message.Message):
     def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., url: _Optional[str] = ..., action: _Optional[str] = ..., wait_selector: _Optional[str] = ..., timeout_seconds: _Optional[int] = ..., session_cookies: _Optional[str] = ...) -> None: ...
 
 class BrowserNavigateResponse(_message.Message):
-    __slots__ = ("header", "status", "error_message", "screenshot_path", "downloaded_file_path", "cookies_json")
+    __slots__ = ("header", "status", "error_message", "screenshot_path", "downloaded_file_path", "cookies_json", "challenge", "action_result", "extracted_data")
     HEADER_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     ERROR_MESSAGE_FIELD_NUMBER: _ClassVar[int]
     SCREENSHOT_PATH_FIELD_NUMBER: _ClassVar[int]
     DOWNLOADED_FILE_PATH_FIELD_NUMBER: _ClassVar[int]
     COOKIES_JSON_FIELD_NUMBER: _ClassVar[int]
+    CHALLENGE_FIELD_NUMBER: _ClassVar[int]
+    ACTION_RESULT_FIELD_NUMBER: _ClassVar[int]
+    EXTRACTED_DATA_FIELD_NUMBER: _ClassVar[int]
     header: _event_pb2.EventHeader
     status: str
     error_message: str
     screenshot_path: str
     downloaded_file_path: str
     cookies_json: str
-    def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., status: _Optional[str] = ..., error_message: _Optional[str] = ..., screenshot_path: _Optional[str] = ..., downloaded_file_path: _Optional[str] = ..., cookies_json: _Optional[str] = ...) -> None: ...
+    challenge: ChallengeDetected
+    action_result: str
+    extracted_data: str
+    def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., status: _Optional[str] = ..., error_message: _Optional[str] = ..., screenshot_path: _Optional[str] = ..., downloaded_file_path: _Optional[str] = ..., cookies_json: _Optional[str] = ..., challenge: _Optional[_Union[ChallengeDetected, _Mapping]] = ..., action_result: _Optional[str] = ..., extracted_data: _Optional[str] = ...) -> None: ...
