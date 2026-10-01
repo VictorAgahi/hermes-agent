@@ -8,7 +8,7 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class CalendarSyncRequest(_message.Message):
-    __slots__ = ("header", "user_id", "year", "week_number", "force_full_resync", "date_range_start", "date_range_end")
+    __slots__ = ("header", "user_id", "year", "week_number", "force_full_resync", "date_range_start", "date_range_end", "ics_file_path", "raw_ics_content")
     HEADER_FIELD_NUMBER: _ClassVar[int]
     USER_ID_FIELD_NUMBER: _ClassVar[int]
     YEAR_FIELD_NUMBER: _ClassVar[int]
@@ -16,6 +16,8 @@ class CalendarSyncRequest(_message.Message):
     FORCE_FULL_RESYNC_FIELD_NUMBER: _ClassVar[int]
     DATE_RANGE_START_FIELD_NUMBER: _ClassVar[int]
     DATE_RANGE_END_FIELD_NUMBER: _ClassVar[int]
+    ICS_FILE_PATH_FIELD_NUMBER: _ClassVar[int]
+    RAW_ICS_CONTENT_FIELD_NUMBER: _ClassVar[int]
     header: _event_pb2.EventHeader
     user_id: str
     year: int
@@ -23,7 +25,9 @@ class CalendarSyncRequest(_message.Message):
     force_full_resync: bool
     date_range_start: str
     date_range_end: str
-    def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., user_id: _Optional[str] = ..., year: _Optional[int] = ..., week_number: _Optional[int] = ..., force_full_resync: _Optional[bool] = ..., date_range_start: _Optional[str] = ..., date_range_end: _Optional[str] = ...) -> None: ...
+    ics_file_path: str
+    raw_ics_content: str
+    def __init__(self, header: _Optional[_Union[_event_pb2.EventHeader, _Mapping]] = ..., user_id: _Optional[str] = ..., year: _Optional[int] = ..., week_number: _Optional[int] = ..., force_full_resync: _Optional[bool] = ..., date_range_start: _Optional[str] = ..., date_range_end: _Optional[str] = ..., ics_file_path: _Optional[str] = ..., raw_ics_content: _Optional[str] = ...) -> None: ...
 
 class CourseEvent(_message.Message):
     __slots__ = ("external_id", "deterministic_id", "title", "description", "location", "start_time_ms", "end_time_ms", "is_exam")
